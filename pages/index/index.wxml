@@ -1,0 +1,35 @@
+<!-- 导航栏 -->
+<cu-custom bgColor="bg-olive">
+  <view slot="content">任务清单</view>
+</cu-custom>
+
+<!-- 页面tab -->
+<view class="bg-white nav text-center">
+  <view class="cu-item {{tab==0?'text-olive cur':''}}" bindtap="onSelectTab" data-tab="{{0}}">未完成</view>
+  <view class="cu-item {{tab==1?'text-olive cur':''}}" bindtap="onSelectTab" data-tab="{{1}}">已完成</view>
+</view>
+
+<!-- 任务列表为空时显示提示文字 -->
+<view wx:if="{{tab === 0 && tab0Empty}}" class="text-center padding text-grey">当前没有任务，新建一个吧</view>
+<view wx:elif="{{tab === 1 && tab1Empty}}" class="text-center padding text-grey">当前没有已完成的任务</view>
+
+<!-- 任务列表内容 -->
+<view wx:else class="cu-list menu">
+  <block wx:for="{{todoList}}">
+    <!-- tab为0时显示未完成任务，tab为1时显示已完成任务 -->
+    <block wx:if="{{tab === 0 && !item.done || tab === 1 && item.done}}">
+      <navigator class="cu-item arrow" url="/pages/edit/edit?editIndex={{index}}">
+        <view class="content text-cut">
+          <text class="text-black">{{item.content}}</text>
+        </view>
+      </navigator>
+    </block>
+  </block>
+</view>
+
+<!-- 新建任务按钮 -->
+<navigator url="/pages/edit/edit" class="add-btn">
+  <button class="cu-btn lg icon bg-olive shadow">
+    <text class="cuIcon-add"></text>
+  </button>
+</navigator>

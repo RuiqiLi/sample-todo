@@ -1,0 +1,5 @@
+.add-btn {
+  position: fixed;
+  bottom: 80rpx;
+  right: 80rpx;
+}

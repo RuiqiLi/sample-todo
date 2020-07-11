@@ -11,6 +11,7 @@ App({
       success: res => {
         this.globalData.StatusBar = res.statusBarHeight
         const custom = wx.getMenuButtonBoundingClientRect()
+        console.log(custom)
         this.globalData.Custom = custom
         this.globalData.CustomBar = custom.bottom + custom.top - res.statusBarHeight
       }
